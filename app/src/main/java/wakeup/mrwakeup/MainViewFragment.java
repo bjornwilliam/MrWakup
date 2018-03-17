@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 
 import wakeup.devicemanager.KickDevice;
+import wakeup.devicemanager.DeviceManager;
+import wakeup.devicestatusmanager.DeviceStatusManager;
 
 import com.riftlabs.communicationlib.KickCommunicationAPI;
 import com.riftlabs.communicationlib.KickCallbacks;
@@ -168,7 +170,8 @@ public class MainViewFragment extends Fragment implements IConnectedKickDeviceCh
         }
     };
     private ArrayList<KickDevice> connectedDeviceList;
-
+    private DeviceManager mDeviceManager;
+    private DeviceStatusManager mDeviceStatusManager;
     private boolean isKicksLinked = false;
     private KickDevice activeKickDevice;
     private KickCommunicationAPI kickCommunicationAPI = null;
@@ -181,6 +184,16 @@ public class MainViewFragment extends Fragment implements IConnectedKickDeviceCh
         for (KickDevice k : connectedDeviceList) {
             k.setKickDeviceOn(isOn);
         }
+    }
+
+    public void setDeviceManager(DeviceManager deviceManager) {
+        this.mDeviceManager = deviceManager;
+        mDeviceStatusManager = new DeviceStatusManager();
+        mDeviceStatusManager.setDeviceManager(mDeviceManager);
+    }
+
+    public KickCallbacks getKickChangedCallback() {
+        return kickChangedCallback;
     }
 
     @Override

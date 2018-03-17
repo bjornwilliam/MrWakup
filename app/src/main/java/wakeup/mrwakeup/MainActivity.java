@@ -16,10 +16,18 @@ import com.riftlabs.communicationlib.KickCommunicationAPI;
 import com.riftlabs.communicationlib.KickCommunicationFactory;
 import com.riftlabs.communicationlib.utils.Log;
 
+
+import wakeup.devicemanager.DeviceManager;
+
 public class MainActivity extends AppCompatActivity {
 
-
+    public static MainViewFragment mainViewFragment;
     private BluetoothManager bluetoothManager;
+    private DeviceManager mDeviceManager;
+
+
+
+
     private static final int REQUEST_ENABLE_BT = 8080;
     private static final String TAG = MainActivity.class.getName();
 
@@ -54,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        mDeviceManager = new DeviceManager();
+        mainViewFragment = new MainViewFragment();
+        mainViewFragment.setDeviceManager(mDeviceManager);
+
+
         // set up bluetooth LE
         bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
@@ -64,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             Log.e("BTLE", "Bluetooth enabled! startConnectionListeners...");
-            //getAPI().startConnectionListeners(settingsFrag.getKickChangedCallback());
+            getAPI().startConnectionListeners(mainViewFragment.getKickChangedCallback());
         }
     }
 
