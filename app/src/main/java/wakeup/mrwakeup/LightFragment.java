@@ -24,12 +24,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MainViewFragment.OnFragmentInteractionListener} interface
+ * {@link LightFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainViewFragment#newInstance} factory method to
+ * Use the {@link LightFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainViewFragment extends Fragment implements IConnectedKickDeviceChangesListner {
+public class LightFragment extends Fragment implements IConnectedKickDeviceChangesListner {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,7 +41,7 @@ public class MainViewFragment extends Fragment implements IConnectedKickDeviceCh
 
     private OnFragmentInteractionListener mListener;
 
-    public MainViewFragment() {
+    public LightFragment() {
         // Required empty public constructor
     }
 
@@ -54,8 +54,8 @@ public class MainViewFragment extends Fragment implements IConnectedKickDeviceCh
      * @return A new instance of fragment MainViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainViewFragment newInstance(String param1, String param2) {
-        MainViewFragment fragment = new MainViewFragment();
+    public static LightFragment newInstance(String param1, String param2) {
+        LightFragment fragment = new LightFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -176,7 +176,7 @@ public class MainViewFragment extends Fragment implements IConnectedKickDeviceCh
     private KickDevice activeKickDevice;
     private KickCommunicationAPI kickCommunicationAPI = null;
 
-    private static String TAG = MainViewFragment.class.getSimpleName();
+    private static String TAG = LightFragment.class.getSimpleName();
 
     private void setConnecetDevicesStatus(KickDevice device) {
         Log.d(TAG, "setConnecetDevicesStatus");

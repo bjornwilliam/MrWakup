@@ -27,12 +27,9 @@ import wakeup.devicemanager.DeviceManager;
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
 
-    public static MainViewFragment mainViewFragment;
+    public static LightFragment lightFragment;
     private BluetoothManager bluetoothManager;
     private DeviceManager mDeviceManager;
-
-
-
 
     private static final int REQUEST_ENABLE_BT = 8080;
     private static final String TAG = MainActivity.class.getName();
@@ -69,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mDeviceManager = new DeviceManager();
-        mainViewFragment = new MainViewFragment();
-        mainViewFragment.setDeviceManager(mDeviceManager);
+        lightFragment = new LightFragment();
+        lightFragment.setDeviceManager(mDeviceManager);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -88,20 +85,25 @@ public class MainActivity extends AppCompatActivity {
                 });
                 builder.show();
             }
+            else {
+                // already have permission
+                // set up bluetooth LE
+                bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+                if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
+                    Log.e("BTLE", "Bluetooth not enabled -> starting BluetoothAdapter.ACTION_REQUEST_ENABLE activity...");
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                }
+                else {
+                    Log.e("BTLE", "Bluetooth enabled! startConnectionListeners...");
+                    getAPI().startConnectionListeners(lightFragment.getKickChangedCallback());
+                }
+            }
         }
 
-        // set up bluetooth LE
-        bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-        if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
-            Log.e("BTLE", "Bluetooth not enabled -> starting BluetoothAdapter.ACTION_REQUEST_ENABLE activity...");
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
-        else {
-            Log.e("BTLE", "Bluetooth enabled! startConnectionListeners...");
-            getAPI().startConnectionListeners(mainViewFragment.getKickChangedCallback());
-        }
+
+
     }
 
 
@@ -117,6 +119,19 @@ public class MainActivity extends AppCompatActivity {
             case PERMISSION_REQUEST_COARSE_LOCATION: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "coarse location permission granted");
+                    // set up bluetooth LE
+                    bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                    BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+                    if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
+                        Log.e("BTLE", "Bluetooth not enabled -> starting BluetoothAdapter.ACTION_REQUEST_ENABLE activity...");
+                        Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                    }
+                    else {
+                        Log.e("BTLE", "Bluetooth enabled! startConnectionListeners...");
+                        getAPI().startConnectionListeners(lightFragment.getKickChangedCallback());
+                    }
+
                 } else {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("Functionality limited");
