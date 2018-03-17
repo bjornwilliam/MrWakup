@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MrWakeup.iml" filepath="$PROJECT_DIR$/MrWakeup.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/communicationlib/communicationlib.iml" filepath="$PROJECT_DIR$/communicationlib/communicationlib.iml" />
     </modules>
   </component>
 </project>
