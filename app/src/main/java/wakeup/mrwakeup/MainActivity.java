@@ -1,6 +1,7 @@
 package wakeup.mrwakeup;
 
 import android.Manifest;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
@@ -12,6 +13,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+
+/*import android.support.v7.app.FragmentManager;
+import android.support.v7.app.FragmentTransaction;*/
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -27,8 +32,9 @@ import com.riftlabs.communicationlib.utils.Log;
 
 import wakeup.devicemanager.DeviceManager;
 
-public class MainActivity extends AppCompatActivity implements AlarmFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements AlarmFragment.OnFragmentInteractionListener, LightFragment.OnFragmentInteractionListener{
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
+
 
     public static LightFragment lightFragment;
     private BluetoothManager bluetoothManager;
@@ -73,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
         lightFragment.setDeviceManager(mDeviceManager);
 
 
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // Android M Permission check
             if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -106,11 +115,11 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        AlarmFragment fragment = new AlarmFragment();
-/*        fragmentTransaction.add(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();*/
+        fragmentTransaction.add(lightFragment,"lightfrag");
+        fragmentTransaction.commit();
 
     }
 

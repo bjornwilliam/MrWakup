@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.support.v4.content.LocalBroadcastManager;
 
 /**
  * Created by willivr on 3/18/2018.
@@ -29,8 +30,16 @@ public class AlarmReceiver extends BroadcastReceiver {
             alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         }
         Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri);
-        ringtone.play();
+        //ringtone.play();
 
+        Intent turnOnLightIntent = new Intent();
+        turnOnLightIntent.setAction("LIGHT_ON");
+
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(turnOnLightIntent);
+
+        //context.sendBroadcast(new Intent("LIGHT_ON"));
+        //LocalBroadcastManager.getInstance(getActivity()).sendBroadcast("LIGHT_ON");
         setResultCode(Activity.RESULT_OK);
     }
 

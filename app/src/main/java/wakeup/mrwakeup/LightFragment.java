@@ -1,12 +1,17 @@
 package wakeup.mrwakeup;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 
 import wakeup.devicemanager.KickDevice;
@@ -15,7 +20,10 @@ import wakeup.devicestatusmanager.DeviceStatusManager;
 
 import com.riftlabs.communicationlib.KickCommunicationAPI;
 import com.riftlabs.communicationlib.KickCallbacks;
+import com.riftlabs.communicationlib.KickCommunicationFactory;
+import com.riftlabs.communicationlib.api.datatypes.KickBrightness;
 import com.riftlabs.communicationlib.api.datatypes.KickId;
+import com.riftlabs.communicationlib.api.datatypes.KickWhiteBalance;
 import com.riftlabs.communicationlib.data.Kick;
 import com.riftlabs.communicationlib.utils.Log;
 
@@ -38,6 +46,19 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private KickCommunicationAPI lightCommunication;
+
+
+    private ArrayList<KickDevice> connectedDeviceList;
+    private DeviceManager mDeviceManager;
+    private DeviceStatusManager mDeviceStatusManager;
+    private boolean isKicksLinked = false;
+    private KickDevice activeKickDevice;
+    private KickCommunicationAPI kickCommunicationAPI = null;
+    private boolean isConnected;
+    private static String TAG = LightFragment.class.getSimpleName();
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,12 +91,19 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        lightCommunication = KickCommunicationFactory.getKickCommunicationAPI(getActivity());
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(lightAlarmBroadcastReceiver,
+                new IntentFilter("LIGHT_ON"));
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
+
         return inflater.inflate(R.layout.fragment_light, container, false);
     }
 
@@ -103,25 +131,45 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+    private final BroadcastReceiver lightAlarmBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.e("lightAlarmBroadcastReceiver", "onReceive");
+           if (activeKickDevice != null) {
+               activeKickDevice.setBrightness(50);
+               activeKickDevice.setWhiteBalance(5000);
+           }
+            KickId kickId = new KickId();
+            kickId.setId(activeKickDevice.getAddress());
+            KickBrightness kickBrightness = new KickBrightness();
+            kickBrightness.setBrightness(20 * 255 / 100);
+            lightCommunication.setDeviceBrightness(kickId, kickBrightness);
+
+            KickWhiteBalance whiteBalance = new KickWhiteBalance();
+            whiteBalance.setColorTemperature(3000);
+
+            lightCommunication.setDeviceWhiteBalance(kickId, whiteBalance);
+
+
+        }
+    };
 
     private final KickCallbacks kickChangedCallback = new KickCallbacks() {
         @Override
         public void onKickAdded(Kick addedKick) {
+            KickDevice kick = mDeviceStatusManager.createKick(addedKick);
+            if (kick != null) {
+                Log.d(TAG, "onKickAdded");
+                if (activeKickDevice == null) {
+                    // first kick device set as connected kick device
+                    activeKickDevice = kick;
+                    mDeviceManager.setActiveKick(kick);
+                    isConnected = true;
+                } else {
+                    addKickDeviceToList(kick);
+                }
 
+            }
         }
 
         @Override
@@ -169,14 +217,7 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
 
         }
     };
-    private ArrayList<KickDevice> connectedDeviceList;
-    private DeviceManager mDeviceManager;
-    private DeviceStatusManager mDeviceStatusManager;
-    private boolean isKicksLinked = false;
-    private KickDevice activeKickDevice;
-    private KickCommunicationAPI kickCommunicationAPI = null;
 
-    private static String TAG = LightFragment.class.getSimpleName();
 
     private void setConnecetDevicesStatus(KickDevice device) {
         Log.d(TAG, "setConnecetDevicesStatus");
@@ -228,6 +269,24 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
     public void onActiveDeviceChanged(KickDevice kickDevice, ArrayList<KickDevice> deviceList) {
         //hideDevicesDropdown();
         //swapActiveKickDevice(kickDevice, deviceList);
+    }
+
+    private void addKickDeviceToList(KickDevice device) {
+        this.connectedDeviceList.add(device);
+    }
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
 }

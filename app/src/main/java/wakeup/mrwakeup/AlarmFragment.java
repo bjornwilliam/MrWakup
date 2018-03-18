@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 import com.riftlabs.communicationlib.utils.Log;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -106,9 +107,17 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
         calendar.set(Calendar.MINUTE, alarmTimePicker.getMinute());
+
+        Date currentTime = Calendar.getInstance().getTime();
         Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent, 0);
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+        //alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+
+            Calendar calendartemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
+            calendartemp.add(Calendar.SECOND, 1);
+
+        alarmManager.set(AlarmManager.RTC, calendartemp.getTimeInMillis(), pendingIntent);
+
     } else {
         alarmManager.cancel(pendingIntent);
         Log.d("MyActivity", "Alarm Off");
