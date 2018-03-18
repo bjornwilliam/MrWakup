@@ -26,6 +26,11 @@ import com.riftlabs.communicationlib.utils.Log;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -104,10 +109,20 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
     private final BroadcastReceiver playSoundAlarmBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // play song
             // Wait 5 minutes before playing song.
-            mediaPlayer = MediaPlayer.create(getContext(), R.raw.divi);
-            mediaPlayer.start();
+            Calendar delay = Calendar.getInstance();
+            delay.set(Calendar.SECOND,10);
+
+            final ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+            ses.schedule(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.divi);
+                    mediaPlayer.start();
+                }
+            },300, TimeUnit.SECONDS);
+                  //  delay.getTimeInMillis(),TimeUnit.MILLISECONDS);
+
 
         }
     };
@@ -132,17 +147,15 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
         calendar.set(Calendar.MINUTE, alarmTimePicker.getMinute());
 
-        Date currentTime = Calendar.getInstance().getTime();
-
         Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent, 0);
-        //alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+
+        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
 
 
-        Calendar calendartemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
-        calendartemp.add(Calendar.SECOND, 1);
-
-        alarmManager.set(AlarmManager.RTC, calendartemp.getTimeInMillis(), pendingIntent);
+        Calendar calendertemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
+            calendertemp.add(Calendar.SECOND, 1);
+        //alarmManager.set(AlarmManager.RTC, calendertemp.getTimeInMillis(), pendingIntent);
 
     } else {
         alarmManager.cancel(pendingIntent);

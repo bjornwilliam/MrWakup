@@ -28,6 +28,10 @@ import com.riftlabs.communicationlib.data.Kick;
 import com.riftlabs.communicationlib.utils.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +63,9 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
     private boolean isConnected;
     private static String TAG = LightFragment.class.getSimpleName();
 
-
+    private float currentBrightness;
+    private float brightnessIncrementSize;
+    private int nrOfBrightnessIncrements = 0;
     private OnFragmentInteractionListener mListener;
 
     public LightFragment() {
@@ -135,24 +141,52 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e("lightAlarmBroadcastReceiver", "onReceive");
-           if (activeKickDevice != null) {
-               activeKickDevice.setBrightness(50);
-               activeKickDevice.setWhiteBalance(5000);
-           }
-            KickId kickId = new KickId();
-            kickId.setId(activeKickDevice.getAddress());
-            KickBrightness kickBrightness = new KickBrightness();
-            kickBrightness.setBrightness(20 * 255 / 100);
-            lightCommunication.setDeviceBrightness(kickId, kickBrightness);
+            if (activeKickDevice != null) {
+               KickId kickId = new KickId();
+               kickId.setId(activeKickDevice.getAddress());
+               KickBrightness kickBrightness = new KickBrightness();
+               kickBrightness.setBrightness( (int)currentBrightness* 255 / 100);
+               lightCommunication.setDeviceBrightness(kickId, kickBrightness);
 
-            KickWhiteBalance whiteBalance = new KickWhiteBalance();
-            whiteBalance.setColorTemperature(3000);
+               KickWhiteBalance whiteBalance = new KickWhiteBalance();
+               whiteBalance.setColorTemperature(3000);
+               lightCommunication.setDeviceWhiteBalance(kickId, whiteBalance);
+            }
+            // Start a period scheduled executor service which gradually increases
+            // start at 5 % brightness, increase up to 50% over 5 minutes.
+            int periodS = 5;
+            int totalTime = 300;
+            int startBrightness = 5;
+            int endBrightness = 50;
+            brightnessIncrementSize = (endBrightness-startBrightness) / (float)totalTime;
+            Calendar period = Calendar.getInstance();
+            period.set(Calendar.SECOND,periodS);
+            currentBrightness = startBrightness;
 
-            lightCommunication.setDeviceWhiteBalance(kickId, whiteBalance);
+            final ScheduledExecutorService ses = Executors.newScheduledThreadPool(5);
+            ses.scheduleAtFixedRate(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (activeKickDevice != null) {
+                            KickId kickId = new KickId();
+                            kickId.setId(activeKickDevice.getAddress());
+                            KickBrightness kickBrightness = new KickBrightness();
+                            currentBrightness += brightnessIncrementSize;
+                            kickBrightness.setBrightness((int) currentBrightness * 255 / 100);
+                            lightCommunication.setDeviceBrightness(kickId, kickBrightness);
+                        }
+                    }
+                    catch (Throwable ex) {
+                        Log.d(TAG,ex.toString());
+                    }
+                }
 
-
+            },0,5, TimeUnit.SECONDS);
         }
     };
+
+
 
     private final KickCallbacks kickChangedCallback = new KickCallbacks() {
         @Override
