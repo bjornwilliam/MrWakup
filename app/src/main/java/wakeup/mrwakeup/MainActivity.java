@@ -7,10 +7,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -24,7 +27,7 @@ import com.riftlabs.communicationlib.utils.Log;
 
 import wakeup.devicemanager.DeviceManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AlarmFragment.OnFragmentInteractionListener {
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
 
     public static LightFragment lightFragment;
@@ -102,7 +105,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        AlarmFragment fragment = new AlarmFragment();
+/*        fragmentTransaction.add(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();*/
 
     }
 
@@ -147,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri){
+        //you can leave it empty
     }
 
 }
