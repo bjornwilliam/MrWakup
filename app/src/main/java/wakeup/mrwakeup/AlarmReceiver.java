@@ -19,18 +19,18 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         //this will update the UI with message
-        AlarmFragment inst = AlarmFragment.instance();
+/*        AlarmFragment inst = AlarmFragment.instance();
 
 
         //this will sound the alarm tone
         //this will sound the alarm once, if you wish to
         //raise alarm in loop continuously then use MediaPlayer and setLooping(true)
-        Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         if (alarmUri == null) {
             alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         }
         Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri);
-        //ringtone.play();
+        ringtone.play();*/
 
         Intent turnOnLightIntent = new Intent();
         turnOnLightIntent.setAction("LIGHT_ON");
@@ -38,8 +38,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
         manager.sendBroadcast(turnOnLightIntent);
 
-        //context.sendBroadcast(new Intent("LIGHT_ON"));
-        //LocalBroadcastManager.getInstance(getActivity()).sendBroadcast("LIGHT_ON");
+        Intent playSongIntent = new Intent();
+        playSongIntent.setAction("PLAY_SOUND");
+
+        manager.sendBroadcast(playSongIntent);
+
+
+
         setResultCode(Activity.RESULT_OK);
     }
 

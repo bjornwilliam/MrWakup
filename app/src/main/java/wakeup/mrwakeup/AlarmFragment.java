@@ -3,17 +3,25 @@ package wakeup.mrwakeup;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
+import com.riftlabs.communicationlib.api.datatypes.KickBrightness;
+import com.riftlabs.communicationlib.api.datatypes.KickId;
+import com.riftlabs.communicationlib.api.datatypes.KickWhiteBalance;
 import com.riftlabs.communicationlib.utils.Log;
 
 import java.util.Calendar;
@@ -40,6 +48,8 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
     private PendingIntent pendingIntent;
     private TimePicker alarmTimePicker;
     private static AlarmFragment inst;
+
+    private MediaPlayer mediaPlayer;
 
 
     // TODO: Rename and change types of parameters
@@ -84,9 +94,23 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(playSoundAlarmBroadcastReceiver,
+                new IntentFilter("PLAY_SOUND"));
+
         alarmManager = (AlarmManager) this.getContext().getSystemService(ALARM_SERVICE);
         inst = this;
     }
+
+    private final BroadcastReceiver playSoundAlarmBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // play song
+            // Wait 5 minutes before playing song.
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.divi);
+            mediaPlayer.start();
+
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,12 +133,14 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         calendar.set(Calendar.MINUTE, alarmTimePicker.getMinute());
 
         Date currentTime = Calendar.getInstance().getTime();
+
         Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent, 0);
         //alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
 
-            Calendar calendartemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
-            calendartemp.add(Calendar.SECOND, 1);
+
+        Calendar calendartemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
+        calendartemp.add(Calendar.SECOND, 1);
 
         alarmManager.set(AlarmManager.RTC, calendartemp.getTimeInMillis(), pendingIntent);
 
