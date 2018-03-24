@@ -3,183 +3,193 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\09feb628d57256fd2391c04a5a8a4c9d\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\e8f42e080c171c880ae22b3a5ad1baf7\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\e8645ca521476a43e1f1e950e5e7fe8a\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\13.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.1.0\814258103cf26a15fcc26ecce35f5b7d24b73f8\support-annotations-26.1.0.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\14.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\0bb799a6bf515010e862e69c634be0d4\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33b82fa09c1caec6225a0ead15777b5f\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\16.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\daef06ea7c5568ebf0a06293efe03e19\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\260da0ad2456938ae52293895822d0ed\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\cd8a86eeb3840d8807c393c5923a8352\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\10.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\9c5105d38e61510e9e6e7394f71504aa\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dac1629c0cc37af9d15923cf7708fd1a\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\57029e502159f19981dfd1a8dc2a8522\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="508f50705b4fde51a16259f29c854201a3044516">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\12.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\0364198df7a704cefc1b3a62409cdc19\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.0.0\a2d487452376193fc8c103dd2b9bd5f2b1b44563\common-1.0.0.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\18.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\b643afbfec035f66117be4d1e920b0dd\jars\classes.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\11.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\15.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.0.0\e414a4cb28434e25c4f6aa71426eb20cf4874ae9\common-1.0.0.jar"
-        jumboMode="false"
-        min-sdk-version="23"
-        optimize="true"
-        revision="27.0.3"
-        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\17.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\willivr\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\c017fd1e678029ba688e0ed452ca8263\jars\classes.jar"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\44442a7a53ac6c0e77b59d4f4d75a545\jars\classes.jar"
         jumboMode="false"
         min-sdk-version="23"
         optimize="true"
         revision="27.0.3"
         sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
-        <dex dex="C:\William\GIT\MrWakeup\app\build\intermediates\transforms\preDex\release\4.jar" />
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\3df406b017828ebc7313bad4b675f5b9\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\f9892b1267e4adbeb3d77e0af1be71c0\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\d548bedb08d1dcfa3ac21a458d79061c\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.0.0\a2d487452376193fc8c103dd2b9bd5f2b1b44563\common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\5ed40c77c5b9bcdc64d6282f32e7f709\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\3f9a3327eacad9c972b93c916f2ced98\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Programming\Repos\MrWakeup\communicationlib\build\intermediates\intermediate-jars\release\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fa52001dc71f4bf1dd8a5f8dd3e178c8a74da132">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\4c995338c83317f2ee85aec428108cb0\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a0d96d15f259bde19ec00ba26b2c80f7\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\06557afa3e022942ab78d659a90327ce\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\7ee298dcccc01ec7404d390bf2e8614b\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\df20362e1bf5abecf1f3e4817e3a0e14\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.1.0\814258103cf26a15fcc26ecce35f5b7d24b73f8\support-annotations-26.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\731a9e95ca2bd35d6efe33cad59ab989\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\modules-2\files-2.1\com.android.support.constraint\constraint-layout-solver\1.0.2\b9cd8fc6bd15cb915735d34535db30ece0c44603\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.0.0\e414a4cb28434e25c4f6aa71426eb20cf4874ae9\common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\bfdd9ef3d4e2fd3c6f5139e8d117e296\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\bjorn\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\4a0c49b3432e5ba42844b02241742b18\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="27.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Programming\Repos\MrWakeup\app\build\intermediates\transforms\preDex\release\3.jar" />
     </item>
 
 </items>
