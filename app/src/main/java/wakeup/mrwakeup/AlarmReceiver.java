@@ -18,19 +18,6 @@ import android.support.v4.content.LocalBroadcastManager;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
-        //this will update the UI with message
-/*        AlarmFragment inst = AlarmFragment.instance();
-
-
-        //this will sound the alarm tone
-        //this will sound the alarm once, if you wish to
-        //raise alarm in loop continuously then use MediaPlayer and setLooping(true)
-        Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        if (alarmUri == null) {
-            alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        }
-        Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri);
-        ringtone.play();*/
 
         Intent turnOnLightIntent = new Intent();
         turnOnLightIntent.setAction("LIGHT_ON");

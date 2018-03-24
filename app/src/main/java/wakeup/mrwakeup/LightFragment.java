@@ -53,6 +53,7 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
 
     private KickCommunicationAPI lightCommunication;
 
+    public
 
     private ArrayList<KickDevice> connectedDeviceList;
     private DeviceManager mDeviceManager;

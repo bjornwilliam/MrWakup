@@ -78,10 +78,6 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
         lightFragment = new LightFragment();
         lightFragment.setDeviceManager(mDeviceManager);
 
-
-
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // Android M Permission check
             if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

@@ -16,6 +16,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
@@ -120,7 +122,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
                     mediaPlayer = MediaPlayer.create(getContext(), R.raw.divi);
                     mediaPlayer.start();
                 }
-            },300, TimeUnit.SECONDS);
+            }, delay.getTimeInMillis(), TimeUnit.MILLISECONDS);
                   //  delay.getTimeInMillis(),TimeUnit.MILLISECONDS);
 
 
@@ -132,15 +134,23 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_alarm, container, false);
-        ToggleButton alarmToggle = (ToggleButton) view.findViewById(R.id.toggleButton);
+        Switch alarmToggle = (Switch) view.findViewById(R.id.switchAlarm);
         alarmToggle.setOnClickListener(this);
         alarmTimePicker = (TimePicker) view.findViewById(R.id.timePicker);
+        alarmTimePicker.setHour(7);
+        alarmTimePicker.setMinute(30);
+
+        TextView nrOfConnectedLights = view.findViewById(R.id.textViewNrOfLightsConn);
+        nrOfConnectedLights.setText("Nr of connected lights: 0");
+
+        TextView connectedToSpeaker = view.findViewById(R.id.textViewConnBtSpeaker);
+        nrOfConnectedLights.setText("Not connected to bluetooth speaker");
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        if ((((ToggleButton) v).isChecked())) {
+        if ((((Switch) v).isChecked())) {
         //do what you want to do when button is clicked
         Log.d("MyActivity", "Alarm On");
         Calendar calendar = Calendar.getInstance();
