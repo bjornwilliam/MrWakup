@@ -3,7 +3,12 @@ package wakeup.mrwakeup;
 import android.Manifest;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothA2dp;
+import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,12 +35,19 @@ import com.riftlabs.communicationlib.KickCommunicationFactory;
 import com.riftlabs.communicationlib.utils.Log;
 
 
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import wakeup.devicemanager.DeviceManager;
 
 public class MainActivity extends AppCompatActivity implements AlarmFragment.OnFragmentInteractionListener, LightFragment.OnFragmentInteractionListener{
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
 
-
+    private String btSpeakerDeviceMac = "F4:4E:FD:5F:78:E7";
+    private String btSpeakerDeviceName = "Audio Pro T3";
     public static LightFragment lightFragment;
     private BluetoothManager bluetoothManager;
     private DeviceManager mDeviceManager;
@@ -110,12 +122,33 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
             }
         }
 
+
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.add(lightFragment,"lightfrag");
         fragmentTransaction.commit();
+
+        Intent intentOpenBluetoothSettings = new Intent();
+        intentOpenBluetoothSettings.setAction(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+        startActivity(intentOpenBluetoothSettings);
+
+        //connectToBtSpeaker();
+        // Start auto connect to Bt speaker
+/*        final ScheduledExecutorService ses = Executors.newScheduledThreadPool(5);
+        ses.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    connectToBtSpeaker();
+                }
+                catch (Throwable ex) {
+                    Log.d(TAG,ex.toString());
+                }
+            }
+
+        },1,1, TimeUnit.SECONDS);*/
 
     }
 
@@ -174,5 +207,44 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
+
+/*
+    public void connectToA2dp() {
+        BluetoothAdapter bleAdapter = ((BluetoothManager) getSystemService(BLUETOOTH_SERVICE)).getAdapter();
+        bleAdapter.getProfileProxy (getApplicationContext(), listener, BluetoothProfile.A2DP);
+    }
+
+    // Bluetooth a2dp
+    public void connectToBtSpeaker() {
+        BluetoothAdapter bleAdapter = ((BluetoothManager) getSystemService(BLUETOOTH_SERVICE)).getAdapter();
+        Set<BluetoothDevice> pairedDevices = bleAdapter.getBondedDevices();
+        for (BluetoothDevice d : pairedDevices) {
+            //if (d.getAddress().equals(btSpeakerDeviceMac)) {
+            if (d.getName().equals(btSpeakerDeviceName)) {
+                d.createInsecureRfcommSocketToServiceRecord(d.getUuids()[0].getUuid());
+
+                UUID.fromString()
+                d.connectGatt(MainActivity.this, true, new BluetoothGattCallback() {
+
+                    @Override
+                    public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                        super.onConnectionStateChange(gatt, status, newState);
+                        switch (newState) {
+                            case BluetoothProfile.STATE_CONNECTED:
+                                Log.i("GattCallback", "connected");
+                                gatt.getServices();
+                                break;
+                            case BluetoothProfile.STATE_DISCONNECTED:
+                                Log.i("GattCallback", "DisconnectedTurbo");
+                                break;
+                            default:
+                                int what = 5;
+                                break;
+                        }
+                    }
+                });
+            }
+        }
+    }*/
 
 }
