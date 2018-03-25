@@ -1,5 +1,7 @@
 package wakeup.devicemanager;
 
+import com.riftlabs.communicationlib.data.KickAction;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -42,6 +44,16 @@ public class DeviceManager {
 	// returns the size of the device list
 	public int noOfDevicesConnected() {
 		return deviceList.size();
+	}
+
+	public int noOfDevicesOnline() {
+		int nrOfDevicesOnline = 0;
+		for (KickDevice device : deviceList) {
+			if (device.getKickAction() != KickAction.DISCONNECTED) {
+				nrOfDevicesOnline += 1;
+			}
+		}
+		return nrOfDevicesOnline;
 	}
 
 	// Gives a number to the new device that is going to be added to the device

@@ -53,7 +53,7 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
 
     private KickCommunicationAPI lightCommunication;
 
-    public
+
 
     private ArrayList<KickDevice> connectedDeviceList;
     private DeviceManager mDeviceManager;
@@ -193,6 +193,7 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
         @Override
         public void onKickAdded(Kick addedKick) {
             KickDevice kick = mDeviceStatusManager.createKick(addedKick);
+            mListener.nrOfConnectedLightsChanged(mDeviceManager.noOfDevicesOnline());
             if (kick != null) {
                 Log.d(TAG, "onKickAdded");
                 if (activeKickDevice == null) {
@@ -219,6 +220,8 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
 
         @Override
         public void onKickDisconnected(Kick disconnectedKick) {
+            mDeviceStatusManager.updateKick(disconnectedKick);
+            mListener.nrOfConnectedLightsChanged(mDeviceManager.noOfDevicesOnline());
 
         }
 
@@ -309,6 +312,9 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
     private void addKickDeviceToList(KickDevice device) {
         this.connectedDeviceList.add(device);
     }
+    private void removeKickFromDeviceList(KickDevice device) {
+        this.connectedDeviceList.remove(device);
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -322,6 +328,7 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+        void nrOfConnectedLightsChanged(int nrOfConnectedLights);
     }
 
 }

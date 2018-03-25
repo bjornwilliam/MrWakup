@@ -58,6 +58,8 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
 
     private MediaPlayer mediaPlayer;
 
+    private TextView nrOfConnectedLightsTextView;
+    private TextView connectedToBtSpeakerTextView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -140,11 +142,11 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         alarmTimePicker.setHour(7);
         alarmTimePicker.setMinute(30);
 
-        TextView nrOfConnectedLights = view.findViewById(R.id.textViewNrOfLightsConn);
-        nrOfConnectedLights.setText("Nr of connected lights: 0");
+        nrOfConnectedLightsTextView = view.findViewById(R.id.textViewNrOfLightsConn);
+        nrOfConnectedLightsTextView.setText("Nr of connected lights: 0");
 
-        TextView connectedToSpeaker = view.findViewById(R.id.textViewConnBtSpeaker);
-        nrOfConnectedLights.setText("Not connected to bluetooth speaker");
+        connectedToBtSpeakerTextView = view.findViewById(R.id.textViewConnBtSpeaker);
+        connectedToBtSpeakerTextView.setText("Not connected to bluetooth speaker");
         return view;
     }
 
@@ -178,6 +180,10 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+    public void updateNrOfConnectedLights(int nrOfConnectedLights) {
+        String text = "Nr of connected lights: " + Integer.toString(nrOfConnectedLights);
+        nrOfConnectedLightsTextView.setText(text);
     }
 
     @Override

@@ -163,6 +163,14 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
     }
 
     @Override
+    public void nrOfConnectedLightsChanged(int nrOfConnectedLights) {
+        AlarmFragment alarmFragment = (AlarmFragment) getSupportFragmentManager().findFragmentById(R.id.alarmFragment);
+        if (alarmFragment != null) {
+            alarmFragment.updateNrOfConnectedLights(nrOfConnectedLights);
+        }
+    }
+
+    @Override
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
