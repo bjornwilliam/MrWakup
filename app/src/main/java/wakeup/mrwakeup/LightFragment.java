@@ -158,7 +158,7 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
             int periodS = 5;
             int totalTime = 300;
             int startBrightness = 5;
-            int endBrightness = 50;
+            int endBrightness = 70;
             brightnessIncrementSize = (endBrightness-startBrightness) / (float)totalTime;
             Calendar period = Calendar.getInstance();
             period.set(Calendar.SECOND,periodS);

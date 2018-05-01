@@ -2,6 +2,8 @@ package wakeup.mrwakeup;
 
 import android.Manifest;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -28,6 +30,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 import com.riftlabs.communicationlib.KickCommunicationAPI;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
 
     private TextView mTextMessage;
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -81,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
+        NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

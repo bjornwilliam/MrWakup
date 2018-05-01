@@ -16,6 +16,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -106,6 +107,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(playSoundAlarmBroadcastReceiver,
                 new IntentFilter("PLAY_SOUND"));
 
+
         alarmManager = (AlarmManager) this.getContext().getSystemService(ALARM_SERVICE);
         inst = this;
     }
@@ -114,20 +116,17 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         @Override
         public void onReceive(Context context, Intent intent) {
             // Wait 5 minutes before playing song.
-            Calendar delay = Calendar.getInstance();
-            delay.set(Calendar.SECOND,10);
+            int waitTime = 200;
 
             final ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
             ses.schedule(new Runnable() {
                 @Override
                 public void run() {
                     mediaPlayer = MediaPlayer.create(getContext(), R.raw.divi);
+                    mediaPlayer.setVolume(70,70);
                     mediaPlayer.start();
                 }
-            }, delay.getTimeInMillis(), TimeUnit.MILLISECONDS);
-                  //  delay.getTimeInMillis(),TimeUnit.MILLISECONDS);
-
-
+            }, waitTime, TimeUnit.SECONDS);
         }
     };
 
@@ -136,8 +135,48 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_alarm, container, false);
-        Switch alarmToggle = (Switch) view.findViewById(R.id.switchAlarm);
-        alarmToggle.setOnClickListener(this);
+        ToggleButton alarmToggle = (ToggleButton) view.findViewById(R.id.switchAlarm);
+        //alarmToggle.setOnClickListener(this);
+        alarmToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (isChecked) {
+                   // The toggle is enabled
+                   //do what you want to do when button is clicked
+                   Log.d("MyActivity", "Alarm On");
+                   Calendar calNow = Calendar.getInstance();
+                   Calendar calSet = (Calendar) calNow.clone();
+                   int hour  =  alarmTimePicker.getHour();
+                   int minute = alarmTimePicker.getMinute();
+                   calSet.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
+                   calSet.set(Calendar.MINUTE, alarmTimePicker.getMinute());
+                   calSet.set(Calendar.SECOND, 0);
+                   calSet.set(Calendar.MILLISECOND, 0);
+                   if(calSet.compareTo(calNow) <= 0){
+                       //Today Set time passed, count to tomorrow
+                       calSet.add(Calendar.DATE, 1);
+                   }
+
+                   //Calendar calendar = Calendar.getInstance();
+                   //calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
+                   //calendar.set(Calendar.MINUTE, alarmTimePicker.getMinute());
+
+                   Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
+                   pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent, 0);
+                   long timeInMillisToAlarm = calSet.getTimeInMillis();
+                   alarmManager.set(AlarmManager.RTC, calSet.getTimeInMillis(), pendingIntent);
+
+
+                   Calendar calendertemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
+                   calendertemp.add(Calendar.SECOND, 1);
+                   //alarmManager.set(AlarmManager.RTC, calendertemp.getTimeInMillis(), pendingIntent);
+               } else {
+                   // The toggle is disabled
+                   alarmManager.cancel(pendingIntent);
+                   Log.d("MyActivity", "Alarm Off");
+               }
+           }
+       });
+
         alarmTimePicker = (TimePicker) view.findViewById(R.id.timePicker);
         alarmTimePicker.setHour(7);
         alarmTimePicker.setMinute(30);
@@ -149,6 +188,8 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         connectedToBtSpeakerTextView.setText("Not connected to bluetooth speaker");
         return view;
     }
+
+
 
     @Override
     public void onClick(View v) {
