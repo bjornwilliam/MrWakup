@@ -1,5 +1,7 @@
 package wakeup.mrwakeup;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -194,6 +196,14 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
         public void onKickAdded(Kick addedKick) {
             KickDevice kick = mDeviceStatusManager.createKick(addedKick);
             mListener.nrOfConnectedLightsChanged(mDeviceManager.noOfDevicesOnline());
+            // Disconnect bluetooth scanner to save power
+            BluetoothManager bluetoothManager = (BluetoothManager) getContext().getSystemService(Context.BLUETOOTH_SERVICE);
+            BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+            //bluetoothAdapter.stopLeScan(null);
+            bluetoothAdapter.cancelDiscovery();
+            //bluetoothAdapter.getBluetoothLeScanner().stopScan(null);
+            //var bluetoothLeScanner = BluetoothAdapter.getBluetoothLeScanner();
+            //KickCommunicationFactory.getKickCommunicationAPI(getContext()).stopConnectionListeners(null);
             if (kick != null) {
                 Log.d(TAG, "onKickAdded");
                 if (activeKickDevice == null) {

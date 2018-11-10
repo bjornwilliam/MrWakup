@@ -163,7 +163,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
                    Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
                    pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent, 0);
                    long timeInMillisToAlarm = calSet.getTimeInMillis();
-                   alarmManager.set(AlarmManager.RTC, calSet.getTimeInMillis(), pendingIntent);
+                   alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), pendingIntent);
 
 
                    Calendar calendertemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.

@@ -11,8 +11,13 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
+
+import java.util.concurrent.TimeUnit;
+
+import static android.content.Context.POWER_SERVICE;
 
 /**
  * Created by willivr on 3/18/2018.
@@ -24,6 +29,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
 
+
+        PowerManager powerManager = (PowerManager) context.getSystemService(POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "MyApp::MyWakelockTag");
+        wakeLock.acquire(TimeUnit.MINUTES.toMillis(40));
         Intent turnOnLightIntent = new Intent();
         turnOnLightIntent.setAction("LIGHT_ON");
 
