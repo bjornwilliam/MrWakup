@@ -190,6 +190,15 @@ public class LightFragment extends Fragment implements IConnectedKickDeviceChang
     };
 
 
+    public void ActivateWakeupEffect(int minutes) {
+        if (activeKickDevice != null) {
+            KickId kickId = new KickId();
+            kickId.setId(activeKickDevice.getAddress());
+            lightCommunication.SendWakeUpEffect(kickId, minutes);
+        }
+
+    }
+
 
     private final KickCallbacks kickChangedCallback = new KickCallbacks() {
         @Override

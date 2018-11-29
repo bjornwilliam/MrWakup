@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
         lightFragment = new LightFragment();
         lightFragment.setDeviceManager(mDeviceManager);
 
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // Android M Permission check
             if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -214,6 +216,14 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
+
+    @Override
+    public  void onUserWantsToActivateAlarm(int minutes) {
+        LightFragment lightFrag = (LightFragment) getSupportFragmentManager().findFragmentByTag("lightfrag");
+        lightFrag.ActivateWakeupEffect(minutes);
+    }
+
+
 
 /*
     public void connectToA2dp() {

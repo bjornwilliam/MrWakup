@@ -981,4 +981,33 @@ public class BluetoothCommunicationHandler implements KickCommunicationAPI, Blue
 			ConnectionUtils.callBackError(null, "Failed in SetDeviceWhiteBalance.", e, context);
 		}
 	}
+	@Override
+	public void SendWakeUpEffect(KickId kickId, int minutes) {
+		for (Kick kick : callbackHandler.getConnectedKicks()) {
+			if (Arrays.equals(kick.getAddress(), kickId.getId())) {
+				sendData((byte)0x21, new byte[] {0xA, 0x0, (byte)((minutes >> 8) & 0xFF), (byte)((minutes) & 0xFF), 0x0, 0x0, 0x0, 0x0}, kick.getGatt(), kick.getTx());
+				try {
+					Thread.sleep(20);
+				}
+				catch (InterruptedException e) {
+
+				}
+				sendData((byte)0x22, new byte[] {0xA}, kick.getGatt(), kick.getTx());
+			}
+		}
+	}
+
+/*	static public List<MasterPacket> CreateLightningEffectPackets(LightningEffectParameters parameters)
+	{
+		var packetList = new List<MasterPacket>();
+
+		var firstPacketData = new byte[] { 0x3, 0x0, (byte)(parameters.cct >> 8), (byte)parameters.cct, (byte)(parameters.interval >> 8), (byte)parameters.interval, 0x0, 0x0 };
+
+		var packet1 = new MasterPacket(null, MasterCommand.ConfigureEffect, firstPacketData);
+		var packet2 = new MasterPacket(null, MasterCommand.StartEffect, new byte[] { 0x3 });
+		packetList.Add(packet1);
+		packetList.Add(packet2);
+		return packetList;
+	}*/
+
 }

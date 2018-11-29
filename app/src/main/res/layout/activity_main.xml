@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context="wakeup.mrwakeup.MainActivity">
 
+
+
+    <fragment
+        android:id="@+id/lightFragment"
+        android:name="wakeup.mrwakeup.LightFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <fragment
         android:id="@+id/alarmFragment"
         android:name="wakeup.mrwakeup.AlarmFragment"

@@ -156,22 +156,27 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
                        calSet.add(Calendar.DATE, 1);
                    }
 
+
+
+                   long timeInMillisToAlarm = calSet.getTimeInMillis() - calNow.getTimeInMillis();
+                   int timeInMinutesToAlarm = (int)timeInMillisToAlarm/(1000*60);
+                   mListener.onUserWantsToActivateAlarm(timeInMinutesToAlarm);
                    //Calendar calendar = Calendar.getInstance();
                    //calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
                    //calendar.set(Calendar.MINUTE, alarmTimePicker.getMinute());
 
-                   Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
+/*                   Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
                    pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent, 0);
-                   long timeInMillisToAlarm = calSet.getTimeInMillis();
+
                    alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), pendingIntent);
 
 
                    Calendar calendertemp = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
-                   calendertemp.add(Calendar.SECOND, 1);
+                   calendertemp.add(Calendar.SECOND, 1);*/
                    //alarmManager.set(AlarmManager.RTC, calendertemp.getTimeInMillis(), pendingIntent);
                } else {
                    // The toggle is disabled
-                   alarmManager.cancel(pendingIntent);
+                   //alarmManager.cancel(pendingIntent);
                    Log.d("MyActivity", "Alarm Off");
                }
            }
@@ -256,6 +261,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
+        void onUserWantsToActivateAlarm(int minutes);
         void onFragmentInteraction(Uri uri);
     }
 }

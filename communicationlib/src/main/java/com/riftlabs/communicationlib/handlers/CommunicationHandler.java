@@ -80,7 +80,10 @@ public class CommunicationHandler implements KickCommunicationAPI {
 	@Override
 	public void stopConnectionListeners(KickCallbacks callback) {
 	}
+	@Override
+	public void SendWakeUpEffect(KickId kickId, int minutes) {
 
+	}
 	@Override
 	public void setDeviceBrightness(KickId kickId, KickBrightness kickBrightness) {
 		try {

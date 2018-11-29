@@ -40,4 +40,6 @@ public interface KickCommunicationAPI {
 	void setDeviceToOff(KickId kickId);
 
 	void setActiveFilter(KickId kickId, int filterIndex);
+
+	void SendWakeUpEffect(KickId kickId, int minutes);
 }
