@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements AlarmFragment.OnF
         NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mDeviceManager = new DeviceManager();
         lightFragment = new LightFragment();

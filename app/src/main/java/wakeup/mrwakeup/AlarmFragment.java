@@ -190,7 +190,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener{
         nrOfConnectedLightsTextView.setText("Nr of connected lights: 0");
 
         connectedToBtSpeakerTextView = view.findViewById(R.id.textViewConnBtSpeaker);
-        connectedToBtSpeakerTextView.setText("Not connected to bluetooth speaker");
+        connectedToBtSpeakerTextView.setText("");
         return view;
     }
 
